@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="辞轩 GratefulTrans - 专业翻译服务提供商">
+    <title>辞轩 GratefulTrans - 专业翻译服务</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .header-container {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Language content visibility */
+        [data-lang="zh-CN"] .lang-zh-CN,
+        [data-lang="zh-TW"] .lang-zh-TW,
+        [data-lang="en"] .lang-en {
+            display: inline;
+        }
+
+        [data-lang="zh-CN"] .lang-zh-TW,
+        [data-lang="zh-CN"] .lang-en,
+        [data-lang="zh-TW"] .lang-zh-CN,
+        [data-lang="zh-TW"] .lang-en,
+        [data-lang="en"] .lang-zh-CN,
+        [data-lang="en"] .lang-zh-TW {
+            display: none;
+        }
+    </style>
+</head>
+<body data-lang="zh-CN">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                辞轩<span>GratefulTrans</span>
+            </a>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#services">
+                            <span class="lang-zh-CN">服务</span>
+                            <span class="lang-zh-TW">服務</span>
+                            <span class="lang-en">Services</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about">
+                            <span class="lang-zh-CN">关于</span>
+                            <span class="lang-zh-TW">關於</span>
+                            <span class="lang-en">About</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <span class="lang-zh-CN">联系</span>
+                            <span class="lang-zh-TW">聯絡</span>
+                            <span class="lang-en">Contact</span>
+                        </a>
+                    </li>
+                    <li class="lang-switch">
+                        <button class="lang-btn active" onclick="switchLanguage('zh-CN')">简体</button>
+                        <button class="lang-btn" onclick="switchLanguage('zh-TW')">繁體</button>
+                        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>
+            <span class="lang-zh-CN">辞轩翻译服务</span>
+            <span class="lang-zh-TW">辭軒翻譯服務</span>
+            <span class="lang-en">GratefulTrans Translation Services</span>
+        </h1>
+        <p>
+            <span class="lang-zh-CN">专业的多语言翻译解决方案，连接全球沟通桥梁</span>
+            <span class="lang-zh-TW">專業的多語言翻譯解決方案，連接全球溝通橋樑</span>
+            <span class="lang-en">Professional multilingual translation solutions bridging global communication</span>
+        </p>
+        <a href="#contact" class="cta-button">
+            <span class="lang-zh-CN">立即咨询</span>
+            <span class="lang-zh-TW">立即諮詢</span>
+            <span class="lang-en">Get Started</span>
+        </a>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-zh-CN">我们的服务</span>
+                <span class="lang-zh-TW">我們的服務</span>
+                <span class="lang-en">Our Services</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="lang-zh-CN">提供全方位的专业翻译服务</span>
+                <span class="lang-zh-TW">提供全方位的專業翻譯服務</span>
+                <span class="lang-en">Comprehensive professional translation services</span>
+            </p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>
+                        <span class="lang-zh-CN">文档翻译</span>
+                        <span class="lang-zh-TW">文件翻譯</span>
+                        <span class="lang-en">Document Translation</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh-CN">专业文档、合同、报告等各类文件的精准翻译</span>
+                        <span class="lang-zh-TW">專業文件、合約、報告等各類文件的精準翻譯</span>
+                        <span class="lang-en">Accurate translation of professional documents, contracts, reports and more</span>
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>
+                        <span class="lang-zh-CN">网站本地化</span>
+                        <span class="lang-zh-TW">網站本地化</span>
+                        <span class="lang-en">Website Localization</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh-CN">帮助您的网站适应不同语言和文化环境</span>
+                        <span class="lang-zh-TW">協助您的網站適應不同語言和文化環境</span>
+                        <span class="lang-en">Adapt your website to different languages and cultural contexts</span>
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>
+                        <span class="lang-zh-CN">商务翻译</span>
+                        <span class="lang-zh-TW">商務翻譯</span>
+                        <span class="lang-en">Business Translation</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh-CN">商业计划书、营销材料、企业宣传等专业翻译</span>
+                        <span class="lang-zh-TW">商業計劃書、行銷材料、企業宣傳等專業翻譯</span>
+                        <span class="lang-en">Expert translation for business plans, marketing materials and corporate communications</span>
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>
+                        <span class="lang-zh-CN">学术翻译</span>
+                        <span class="lang-zh-TW">學術翻譯</span>
+                        <span class="lang-en">Academic Translation</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh-CN">论文、研究报告、学术著作等高精度翻译</span>
+                        <span class="lang-zh-TW">論文、研究報告、學術著作等高精度翻譯</span>
+                        <span class="lang-en">High-precision translation for papers, research reports and academic works</span>
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚖️</div>
+                    <h3>
+                        <span class="lang-zh-CN">法律翻译</span>
+                        <span class="lang-zh-TW">法律翻譯</span>
+                        <span class="lang-en">Legal Translation</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh-CN">法律文件、法院文件、合同协议等专业翻译</span>
+                        <span class="lang-zh-TW">法律文件、法院文件、合約協議等專業翻譯</span>
+                        <span class="lang-en">Specialized translation for legal documents, court filings and contracts</span>
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>
+                        <span class="lang-zh-CN">口译服务</span>
+                        <span class="lang-zh-TW">口譯服務</span>
+                        <span class="lang-en">Interpretation Services</span>
+                    </h3>
+                    <p>
+                        <span class="lang-zh-CN">会议口译、商务陪同、交替传译等现场服务</span>
+                        <span class="lang-zh-TW">會議口譯、商務陪同、交替傳譯等現場服務</span>
+                        <span class="lang-en">On-site services including conference interpretation and business liaison</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>
+                        <span class="lang-zh-CN">关于辞轩</span>
+                        <span class="lang-zh-TW">關於辭軒</span>
+                        <span class="lang-en">About GratefulTrans</span>
+                    </h2>
+                    <p>
+                        <span class="lang-zh-CN">辞轩（GratefulTrans）是一家专业的翻译服务提供商，致力于为客户提供高质量、准确、及时的多语言翻译解决方案。</span>
+                        <span class="lang-zh-TW">辭軒（GratefulTrans）是一家專業的翻譯服務提供商，致力於為客戶提供高品質、準確、即時的多語言翻譯解決方案。</span>
+                        <span class="lang-en">GratefulTrans is a professional translation service provider dedicated to delivering high-quality, accurate, and timely multilingual translation solutions.</span>
+                    </p>
+                    <p>
+                        <span class="lang-zh-CN">我们拥有经验丰富的翻译团队，涵盖多个行业领域，确保每一份译稿都达到专业水准。</span>
+                        <span class="lang-zh-TW">我們擁有經驗豐富的翻譯團隊，涵蓋多個行業領域，確保每一份譯稿都達到專業水準。</span>
+                        <span class="lang-en">Our experienced translation team covers multiple industries, ensuring every translation meets professional standards.</span>
+                    </p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">
+                            <span class="lang-zh-CN">语言对</span>
+                            <span class="lang-zh-TW">語言對</span>
+                            <span class="lang-en">Language Pairs</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10000+</div>
+                        <div class="stat-label">
+                            <span class="lang-zh-CN">完成项目</span>
+                            <span class="lang-zh-TW">完成項目</span>
+                            <span class="lang-en">Projects Completed</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">
+                            <span class="lang-zh-CN">客户满意度</span>
+                            <span class="lang-zh-TW">客戶滿意度</span>
+                            <span class="lang-en">Client Satisfaction</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">
+                            <span class="lang-zh-CN">在线支持</span>
+                            <span class="lang-zh-TW">線上支援</span>
+                            <span class="lang-en">Online Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-zh-CN">联系我们</span>
+                <span class="lang-zh-TW">聯絡我們</span>
+                <span class="lang-en">Contact Us</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="lang-zh-CN">期待为您提供服务</span>
+                <span class="lang-zh-TW">期待為您提供服務</span>
+                <span class="lang-en">We look forward to serving you</span>
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📧 Email</h3>
+                    <p>info@gratefultrans.com</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📱 Phone</h3>
+                    <p>+86 400-XXX-XXXX</p>
+                </div>
+                <div class="contact-card">
+                    <h3>💬 WeChat</h3>
+                    <p>GratefulTrans</p>
+                </div>
+                <div class="contact-card">
+                    <h3>🌍 Website</h3>
+                    <p>www.gratefultrans.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 辞轩 GratefulTrans.
+            <span class="lang-zh-CN">版权所有</span>
+            <span class="lang-zh-TW">版權所有</span>
+            <span class="lang-en">All Rights Reserved</span>
+        </p>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update body attribute
+            document.body.setAttribute('data-lang', lang);
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Store preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'zh-CN';
+            document.body.setAttribute('data-lang', savedLang);
+            document.documentElement.lang = savedLang;
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(savedLang === 'zh-CN' ? '简体' : savedLang === 'zh-TW' ? '繁體' : 'EN')) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
